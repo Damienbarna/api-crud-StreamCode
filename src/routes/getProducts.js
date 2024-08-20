@@ -16,8 +16,8 @@ router.get("/:limite", async (req, res) => {
   }
 });
 
-router.get("/all", async (req, res) => {
-  const userId = req.user.id;
+router.get("/all/:userId", async (req, res) => {
+  const userId = req.params.userId;
   try {
     const product = await Products.findAll({ where: { userId: userId } });
     res.json(product);

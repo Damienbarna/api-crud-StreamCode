@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/index.js");
-const bcrypt = require("bcrypt");
 
-const User = sequelize.define("User", {
+const Users = sequelize.define("User", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -14,4 +13,4 @@ const User = sequelize.define("User", {
   },
 });
 
-module.exports = User;
+module.exports = Users;

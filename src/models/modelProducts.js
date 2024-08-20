@@ -2,6 +2,7 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/index.js");
 
 const Products = sequelize.define("products", {
+  userId: DataTypes.INTEGER,
   name: DataTypes.STRING,
   description: DataTypes.STRING,
   image: DataTypes.STRING,
