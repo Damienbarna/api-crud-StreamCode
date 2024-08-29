@@ -1,13 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const { Products } = require("../models/modelProducts.js");
+const auth = require("../middlewares/auth.js");
+const { User } = require("../models/modelUser.js");
 
-router.post("", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const newProduct = req.body;
-  const userId = req.user.id;
+  const userId = req.user.userId;
   console.log("Données reçues :", newProduct);
 
   try {
+    const user = await User.findByPk(userId);
+    if (user) {
+      return res.status(404).json({ error: "Utilisateur trouvé" });
+    } else {
+      console.log("Utilisateur non trouvé");
+    }
     const products = await Products.create({
       userId: userId,
       name: newProduct.name,

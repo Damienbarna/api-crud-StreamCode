@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     res.status(200).json({
       message: "Connexion réussie",
       token,
-      user: { id: user.id, username: user.name },
+      user: { userId: user.id, username: user.name },
     });
   } catch (error) {
     console.error("Erreur lors de la connexion :", error);

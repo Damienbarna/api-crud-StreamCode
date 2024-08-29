@@ -13,6 +13,7 @@ module.exports = (req, res, next) => {
     const decoded = jwt.verify(token, secret);
     console.log("Token décodé:", decoded);
     req.user = decoded;
+    console.log("User:", req.user);
     next();
   } catch (error) {
     console.error("Erreur de validation du token:", error);

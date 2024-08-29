@@ -10,20 +10,12 @@ const signup = require("./src/routes/signup");
 const login = require("./src/routes/login");
 const authMiddleware = require("./src/routes/login");
 const getName = require("./src/routes/getName");
+const userProducts = require("./src/routes/getProducts");
 
 require("dotenv").config();
 
 app.use(express.json());
 app.use(cors());
-
-app.use(
-  session({
-    secret: "your_secret_key",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }, // Assurez-vous de mettre `secure: true` en production avec HTTPS
-  })
-);
 
 app.use("/signup", signup);
 app.use("/login", login);
@@ -35,7 +27,7 @@ app.use("/addproduct", postProduct);
 app.use("/deleteproduct", deleteProduct);
 app.use("/updateproduct", updateProduct);
 app.use("/getname", getName);
-
+app.use("/user/products", userProducts);
 app.use((req, res) =>
   res.status(404).json({ msg: "This route does not exists" })
 );
