@@ -24,3 +24,4 @@ sequelize.sync({ alter: true }).then(async () => {
 module.exports.sequelize = sequelize;
 require("../models/modelProducts.js");
 require("../models/modelUser.js");
+require("../models/Message.js");

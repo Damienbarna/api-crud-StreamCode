@@ -11,12 +11,10 @@ router.post("/", auth, async (req, res) => {
 
   try {
     const user = await User.findByPk(userId);
-    if (user) {
-      return res.status(404).json({ error: "Utilisateur trouvé" });
-    } else {
-      console.log("Utilisateur non trouvé");
+    if (!user) {
+      return res.status(404).json({ error: "Utilisateur non trouvé" });
     }
-    const products = await Products.create({
+    const product = await Products.create({
       userId: userId,
       name: newProduct.name,
       url: newProduct.url,
@@ -25,7 +23,7 @@ router.post("/", auth, async (req, res) => {
       langage: newProduct.langage,
       categorie: newProduct.categorie,
     });
-    res.status(201).json(products);
+    res.status(201).json(product);
   } catch (error) {
     console.error("Erreur lors de l'ajout du produit :", error);
     res.status(500).json({ message: "Erreur lors de l'ajout du produit" });

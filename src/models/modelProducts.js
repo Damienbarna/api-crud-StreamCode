@@ -16,6 +16,10 @@ const Products = sequelize.define("products", {
   category: DataTypes.STRING,
   langage: DataTypes.STRING,
   url: DataTypes.STRING,
+  likes: {
+    type: DataTypes.INTEGER,
+    defaultValue: 0,
+  },
 });
 
 User.hasMany(Products, {

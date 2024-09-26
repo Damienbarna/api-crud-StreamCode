@@ -8,10 +8,11 @@ const deleteProduct = require("./src/routes/deleteProducts");
 const updateProduct = require("./src/routes/updateProducts");
 const signup = require("./src/routes/signup");
 const login = require("./src/routes/login");
+const likeProduct = require("./src/routes/postLike"); // Nouvelle route
 const authMiddleware = require("./src/routes/login");
 const getName = require("./src/routes/getName");
 const userProducts = require("./src/routes/getProducts");
-
+const messages = require("./src/routes/messages");
 require("dotenv").config();
 
 app.use(express.json());
@@ -26,8 +27,10 @@ app.use("/products", getProducts);
 app.use("/addproduct", postProduct);
 app.use("/deleteproduct", deleteProduct);
 app.use("/updateproduct", updateProduct);
+app.use("/likeproduct", likeProduct); // Nouvelle route
 app.use("/getname", getName);
 app.use("/user/products", userProducts);
+app.use("/messages", messages);
 app.use((req, res) =>
   res.status(404).json({ msg: "This route does not exists" })
 );

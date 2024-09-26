@@ -7,14 +7,14 @@ router.get("/:id", async (req, res) => {
 
   try {
     const user = await User.findByPk(userId, {
-      attributes: "name",
+      attributes: ["name", "imageUrl"],
     });
 
     if (!user) {
       return res.status(404).json({ message: "Utilisateur non trouvé" });
     }
 
-    res.status(200).json({ name: user.name });
+    res.status(200).json({ name: user.name, imageUrl: user.imageUrl });
   } catch (error) {
     console.error(
       "Erreur lors de la récupération du nom d'utilisateur :",

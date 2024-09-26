@@ -30,4 +30,20 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const productId = parseInt(req.params.id);
+    const product = await Products.findByPk(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: "Produit non trouvé" });
+    }
+
+    res.json(product);
+  } catch (error) {
+    console.error("Erreur lors de la récupération du produit :", error);
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+
 module.exports = router;
